@@ -6,6 +6,13 @@ name: Publish container image
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: Tag to publish for this manual build
+        required: false
+        default: latest
+        type: string
 
 permissions:
   contents: read
@@ -17,10 +24,10 @@ jobs:
       contents: read
       packages: write
     steps:
-      - name: Check out the release
+      - name: Check out source
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ github.event.release.tag_name || github.ref }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
@@ -41,7 +48,8 @@ jobs:
         with:
           images: ghcr.io/ax1111yt/dtek-schedule-api
           tags: |
-            type=semver,pattern={{version}}
+            type=semver,pattern={{version}},enable=${{ github.event_name == 'release' }}
+            type=raw,value=${{ inputs.image_tag }},enable=${{ github.event_name == 'workflow_dispatch' }}
           flavor: |
             latest=auto
 
