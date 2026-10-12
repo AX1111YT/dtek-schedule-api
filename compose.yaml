@@ -1,0 +1,14 @@
+# Copyright 2026 AX1111YT
+# SPDX-License-Identifier: Apache-2.0
+
+services:
+  dtek-schedule-api:
+    image: ghcr.io/ax1111yt/dtek-schedule-api:latest
+    pull_policy: always
+    env_file:
+      - .env
+    environment:
+      HOST: 0.0.0.0
+    ports:
+      - "127.0.0.1:${PORT:-8000}:${PORT:-8000}"
+    restart: unless-stopped

@@ -1,0 +1,8 @@
+# Copyright 2026 AX1111YT
+# SPDX-License-Identifier: Apache-2.0
+
+fastapi>=0.115,<1
+slowapi>=0.1.10,<0.2
+uvicorn>=0.34,<1
+curl-cffi>=0.14,<0.15
+tzdata>=2026.1
