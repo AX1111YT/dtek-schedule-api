@@ -37,7 +37,7 @@ then chose the method that fits you:
 - Step 1: Create your local configuration
 
 ```powershell
-Copy-Item .env.example .env
+Copy-Item .env.example .env # Edit the .env if you want to tweak the settings.
 ```
 
 - Step 2: Create a virtual environment, install dependencies, and start the API
@@ -53,7 +53,7 @@ uv run --no-project --env-file .env --python .venv\Scripts\python.exe --module d
 - Step 1: Create your local configuration
 
 ```bash
-cp .env.example .env
+cp .env.example .env # Edit the .env if you want to tweak the settings.
 ```
 
 - Step 2: Create a virtual environment, install dependencies, and start the API
@@ -87,18 +87,16 @@ Step 3: choose the method that fits you:
 ### Docker compose (recommended)
 
 ```sh
-cp .env.example .env
+cp .env.example .env # Edit the .env if you want to tweak the settings.
 docker compose up -d
 ```
-
-Compose pulls the image from GitHub Container Registry and publishes it on `127.0.0.1`. View logs with `docker compose logs -f`; stop the service with `docker compose down`.
 
 ### Docker run
 
 #### Run a published release
 
 ```sh
-cp .env.example .env
+cp .env.example .env # Edit the .env if you want to tweak the settings.
 docker pull ghcr.io/ax1111yt/dtek-schedule-api:latest
 docker run --rm --name dtek-schedule-api \
   --env-file .env \

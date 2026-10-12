@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt \
     && useradd --system --uid 10001 --create-home app
 
 COPY dtek_api ./dtek_api
+COPY LICENSE .
 
 USER app
 EXPOSE 8000
